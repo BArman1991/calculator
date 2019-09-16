@@ -1,0 +1,22 @@
+.Display{
+    height: 61px;
+    
+    
+}
+
+input[type=text]{
+    width:319px;
+    height:117px;
+    font-size:40px;
+    font: 100 14px 'Roboto';
+    font-size: 6em;
+    position: absolute;
+    border: 0px;
+
+
+
+    background: black; 
+    color: white;
+    text-align: right;
+}
+
