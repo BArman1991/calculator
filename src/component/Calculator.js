@@ -6,7 +6,7 @@ import './Calculator.css';
 
 class Calculator extends React.Component{
   state = {
-    value: '',
+    value: this.props.value,
     result: '',
     action: ''
 }
@@ -49,9 +49,9 @@ onAction(e){
 
   if(this.state.action == ""){
     this.setState(() => ({
+      action: newAction,
       value: '',
       result: numValue,
-      action: newAction
     }));
     console.log('NumValue'+numValue, 'NumResult'+numResult);
   }else{
@@ -59,8 +59,8 @@ onAction(e){
       case '+':
         this.setState(() => ({
           action: newAction,
+          value: '',
           result: numResult + numValue,
-          value: ''
         }))
         console.log('NumValue+'+numValue, 'NumResult'+numResult);
         break;
@@ -68,8 +68,8 @@ onAction(e){
         console.log("The result is: ", numResult)
          this.setState(() => ({
           action: newAction,
+          value: '',
           result: numResult - numValue,
-          value: ''
         }))
         console.log('NumValue-'+numValue, 'NumResult'+numResult);
         break;
@@ -88,6 +88,7 @@ onAction(e){
           result: numResult / numValue,
         }))
         console.log('NumValue:'+numValue, 'NumResult'+numResult);
+        break;
       case '±':
         this.setState(() => ({
           action: newAction,
@@ -99,7 +100,7 @@ onAction(e){
       default:
         break;
     }
-    // console.log('Result:'+this.state.value,'Value:'+this.state.action,this.state.result)
+    console.log('Result:'+this.state.value,'Value:'+this.state.action,this.state.result)
   }
   }
 
@@ -109,12 +110,12 @@ onEquall(){
   var numResult = 0;
   var numValue = 0;
   var result = 0;
-      if(this.state.result){
-         numResult = parseInt(this.state.result, 10);
-      }
-      if(this.state.value){
-        numValue = parseInt(this.state.value, 10);
-      }
+  if(this.state.result){
+     numResult = parseInt(this.state.result, 10);
+    }
+  if(this.state.value){
+      numValue = parseInt(this.state.value, 10);
+    }
   if(this.state.action === '+'){
     result = numResult + numValue
   }
@@ -134,11 +135,14 @@ onEquall(){
     result = numResult * -1
   }
   this.setState(() => ({
-   value: result
+   value: result,
   }))
   console.log('Result:'+this.state.result, 'Value:'+ this.state.value)
 }
 
+updateChange(e){
+  this.setState({value: e.taget.value})
+}
 
 printAction(){
   this.setState((e)=>({
@@ -146,11 +150,17 @@ printAction(){
   }));
   
 }
-    render(){
 
+
+
+    render(){
         return(
             <div className="Calculator">
-            <Display value={this.state.value} action={this.state.action} result={this.state.result}/>
+            <Display 
+            vasia={this.updateChange}
+            value={this.state.value} 
+            action={this.state.action} 
+            result={this.state.result}/>
             <Batton className='topButton' value='AC' changeValue={() => this.zeroValue()}/>
             <Batton className='topButton' value='±' changeValue={() => this.onAction('±')}/>
             <Batton className='topButton' value='%' changeValue={() => this.onAction('%')}/>
