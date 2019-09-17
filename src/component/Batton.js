@@ -26,7 +26,6 @@ const Batton = (props) => {
         <div className={buttonClass} 
         onClick={() => props.changeValue()}
         value={props.value}
-        onChange={(e) => props.updateChange(e)}
         >
         {props.value}
         </div>

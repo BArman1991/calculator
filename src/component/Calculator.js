@@ -140,9 +140,12 @@ onEquall(){
   console.log('Result:'+this.state.result, 'Value:'+ this.state.value)
 }
 
-updateChange(e){
-  this.setState({value: e.taget.value})
+updateChange = (event) => {
+ this.setState({
+   value: event.target.value
+ })
 }
+
 
 printAction(){
   this.setState((e)=>({
@@ -157,7 +160,7 @@ printAction(){
         return(
             <div className="Calculator">
             <Display 
-            vasia={this.updateChange}
+            changeValue={(e) => this.updateChange(e)}
             value={this.state.value} 
             action={this.state.action} 
             result={this.state.result}/>

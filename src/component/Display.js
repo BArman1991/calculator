@@ -8,7 +8,8 @@ const Display = (props) => {
   return(
     <div className="Display">
       <input type="text" 
-      vasia={(e) => props.updateChange(e)}
+      // vasia={(e) => props.printValue(e)}
+      onChange={(e) => props.changeValue}
       value={props.value}  
       action={props.action} 
       result={props.result}
