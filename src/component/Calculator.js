@@ -2,6 +2,8 @@ import React from 'react';
 import Batton from './Batton';
 import Display from './Display';
 import './Calculator.css';
+import { thisTypeAnnotation } from '@babel/types';
+import { SSL_OP_CIPHER_SERVER_PREFERENCE } from 'constants';
 
 
 class Calculator extends React.Component{
@@ -13,7 +15,7 @@ class Calculator extends React.Component{
    
 printValue(value) {
   const newVal = this.state.value + value
-  parseInt(newVal); 
+  parseFloat(newVal); 
   this.setState(() => ({value: newVal }))
   
 }
@@ -35,25 +37,22 @@ onAction(e){
   var numValue = 0;
 
 
-  if(this.state.result != ""){
-    numResult = parseInt(this.state.result, 10);
+  if(this.state.result !== ""){
+    numResult = parseFloat(this.state.result, 10);
   }
-  console.log('NumResult '+numResult)
-  console.log("before action value:", this.state.value)
+  
 
-
-  if(this.state.value != ""){
-    numValue = parseInt(this.state.value, 10);
+  if(this.state.value !== ""){
+    numValue = parseFloat(this.state.value, 10);
   }
-  console.log('numValue '+numValue)
+  
 
-  if(this.state.action == ""){
+  if(this.state.action === ""){
     this.setState(() => ({
       action: newAction,
       value: '',
       result: numValue,
     }));
-    console.log('NumValue'+numValue, 'NumResult'+numResult);
   }else{
     switch (this.state.action) {
       case '+':
@@ -102,7 +101,7 @@ onAction(e){
     }
     console.log('Result:'+this.state.value,'Value:'+this.state.action,this.state.result)
   }
-  }
+}
 
   
 
@@ -111,10 +110,10 @@ onEquall(){
   var numValue = 0;
   var result = 0;
   if(this.state.result){
-     numResult = parseInt(this.state.result, 10);
+     numResult = parseFloat(this.state.result, 10);
     }
   if(this.state.value){
-      numValue = parseInt(this.state.value, 10);
+      numValue = parseFloat(this.state.value, 10);
     }
   if(this.state.action === '+'){
     result = numResult + numValue
@@ -141,9 +140,9 @@ onEquall(){
 }
 
 updateChange = (e) => {
- this.setState({
-   value: e.target.value,
- })
+  this.setState({
+    value: e.target.value
+  })
 }
 
 
