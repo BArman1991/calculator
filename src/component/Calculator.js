@@ -6,7 +6,7 @@ import './Calculator.css';
 
 class Calculator extends React.Component{
   state = {
-    value: this.props.value,
+    value: '',
     result: '',
     action: ''
 }
@@ -140,9 +140,9 @@ onEquall(){
   console.log('Result:'+this.state.result, 'Value:'+ this.state.value)
 }
 
-updateChange = (event) => {
+updateChange = (e) => {
  this.setState({
-   value: event.target.value
+   value: e.target.value,
  })
 }
 
@@ -151,7 +151,6 @@ printAction(){
   this.setState((e)=>({
     value: e = this.result
   }));
-  
 }
 
 
