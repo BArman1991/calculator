@@ -2,7 +2,7 @@ import React from 'react';
 import Batton from './Batton';
 import Display from './Display';
 import './Calculator.css';
-import { thisTypeAnnotation } from '@babel/types';
+import { thisTypeAnnotation, switchCase, switchStatement } from '@babel/types';
 import { SSL_OP_CIPHER_SERVER_PREFERENCE } from 'constants';
 
 
@@ -72,7 +72,7 @@ onAction(e){
         }))
         console.log('NumValue-'+numValue, 'NumResult'+numResult);
         break;
-      case 'X':
+      case '×':
         this.setState(() => ({
           action: newAction,
           value: '',
@@ -80,7 +80,7 @@ onAction(e){
         }))
         console.log('NumValueX'+numValue, 'NumResult'+numResult);
         break;
-      case ':':
+      case '÷':
         this.setState(() => ({
           action: newAction,
           value: '',
@@ -103,6 +103,69 @@ onAction(e){
   }
 }
 
+switchAction(e){
+  const newAction = e;
+
+  var numResult = 0;
+  var numValue = 0;
+
+
+  if(this.state.result !== ""){
+    numResult = parseFloat(this.state.result, 10);
+  }
+  
+
+  if(this.state.value !== ""){
+    numValue = parseFloat(this.state.value, 10);
+  }
+  
+  switch (newAction) {
+    case '+':
+      this.setState(() => ({
+        action: newAction,
+        value: '',
+        result: numResult + numValue,
+      }))
+      console.log('NumValue+'+numValue, 'NumResult'+numResult);
+      break;
+    case '-':
+      console.log("The result is: ", numResult)
+       this.setState(() => ({
+        action: newAction,
+        value: '',
+        result: numResult - numValue,
+      }))
+      console.log('NumValue-'+numValue, 'NumResult'+numResult);
+      break;
+    case '×':
+      this.setState(() => ({
+        action: newAction,
+        value: '',
+        result: numResult * numValue,
+      }))
+      console.log('NumValueX'+numValue, 'NumResult'+numResult);
+      break;
+    case ':':
+      this.setState(() => ({
+        action: newAction,
+        value: '',
+        result: numResult / numValue,
+      }))
+      console.log('NumValue:'+numValue, 'NumResult'+numResult);
+      break;
+    case '±':
+      this.setState(() => ({
+        action: newAction,
+        value: '',
+        result: numResult * -1
+      }))
+      console.log('NumValue%'+numValue, 'NumResult'+numResult);
+      break;
+    default:
+      return this.state.value + newAction;
+      break;
+  }
+}
   
 
 onEquall(){
@@ -121,10 +184,10 @@ onEquall(){
   if(this.state.action === '-'){
     result = numResult - numValue
   }
-  if(this.state.action === 'X'){
+  if(this.state.action === '×'){
     result = numResult * numValue
   }
-  if(this.state.action === ':'){
+  if(this.state.action === '÷'){
     result = numResult / numValue
   }
   if(this.state.action === '%'){
@@ -136,21 +199,31 @@ onEquall(){
   this.setState(() => ({
    value: result,
   }))
-  console.log('Result:'+this.state.result, 'Value:'+ this.state.value)
+  console.log('Result:'+this.state.resut, 'Value:'+ this.state.value)
 }
 
 updateChange = (e) => {
   this.setState({
     value: e.target.value
   })
-}
 
 
-printAction(){
-  this.setState((e)=>({
-    value: e = this.result
-  }));
+  
+  console.log('ono'+this.state.value)
+  console.log('skolko bykv'+this.state.value.length)
+ this.switchAction(this.state.value[this.state.value.length -1])
 }
+
+//   if(this.state.action === ""){
+//     this.setState(() => ({
+//       action: this.state.value,
+//     }))
+//   }
+//   console.log('vasia'+this.state.value)
+// }
+
+
+
 
 
 
@@ -165,11 +238,11 @@ printAction(){
             <Batton className='topButton' value='AC' changeValue={() => this.zeroValue()}/>
             <Batton className='topButton' value='±' changeValue={() => this.onAction('±')}/>
             <Batton className='topButton' value='%' changeValue={() => this.onAction('%')}/>
-            <Batton className='rightButton' value=':' changeValue={() => this.onAction(':')}/>
+            <Batton className='rightButton' value='÷' changeValue={() => this.onAction('÷')}/>
             <Batton value="7" changeValue={() => this.printValue('7')}/>
             <Batton value="8" changeValue={() => this.printValue('8')}/>
             <Batton value="9" changeValue={() => this.printValue('9')}/>
-            <Batton className='rightButton' value='X' changeValue={() => this.onAction('X')}/>
+            <Batton className='rightButton' value='×' changeValue={() => this.onAction('×')}/>
             <Batton value="4" changeValue={() => this.printValue('4')}/>
             <Batton value="5" changeValue={() => this.printValue('5')}/>
             <Batton value="6" changeValue={() => this.printValue('6')}/>
