@@ -4,7 +4,7 @@
     
 }
 
-input[type=text]{
+.grisha{
     width:319px;
     height:117px;
     font-size:40px;
@@ -12,9 +12,20 @@ input[type=text]{
     font-size: 6em;
     position: absolute;
     border: 0px;
+    background: black; 
+    color: white;
+    text-align: right;
+}
+ 
 
-
-
+.vasia{
+    width:319px;
+    height:117px;
+    font-size:40px;
+    font: 100 14px 'Roboto';
+    font-size: 4em;
+    position: absolute;
+    border: 0px;
     background: black; 
     color: white;
     text-align: right;

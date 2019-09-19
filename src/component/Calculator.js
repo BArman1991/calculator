@@ -137,7 +137,7 @@ switchAction(e){
       }))
       console.log('NumValue-'+numValue, 'NumResult'+numResult);
       break;
-    case '×':
+    case '*':
       this.setState(() => ({
         action: newAction,
         value: '',
@@ -167,6 +167,7 @@ switchAction(e){
   }
 }
   
+
 
 onEquall(){
   var numResult = 0;
@@ -214,16 +215,6 @@ updateChange = (e) => {
  this.switchAction(this.state.value[this.state.value.length -1])
 }
 
-//   if(this.state.action === ""){
-//     this.setState(() => ({
-//       action: this.state.value,
-//     }))
-//   }
-//   console.log('vasia'+this.state.value)
-// }
-
-
-
 
 
 
@@ -235,7 +226,7 @@ updateChange = (e) => {
             value={this.state.value} 
             action={this.state.action} 
             result={this.state.result}/>
-            <Batton className='topButton' value='AC' changeValue={() => this.zeroValue()}/>
+            <Batton className='topButton' value={this.state.value.length>0?'C':'AC'} changeValue={() => this.zeroValue()}/>
             <Batton className='topButton' value='±' changeValue={() => this.onAction('±')}/>
             <Batton className='topButton' value='%' changeValue={() => this.onAction('%')}/>
             <Batton className='rightButton' value='÷' changeValue={() => this.onAction('÷')}/>
