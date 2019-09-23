@@ -1,9 +1,8 @@
 import React from 'react';
 import Batton from './Batton';
-import Display from './Display';
+import Display from './Display';  
 import './Calculator.css';
-import { thisTypeAnnotation, switchCase, switchStatement } from '@babel/types';
-import { SSL_OP_CIPHER_SERVER_PREFERENCE } from 'constants';
+
 
 
 class Calculator extends React.Component{
@@ -61,16 +60,15 @@ onAction(e){
           value: '',
           result: numResult + numValue,
         }))
-        console.log('NumValue+'+numValue, 'NumResult'+numResult);
+        console.log('Plus NumValue+'+numValue, 'NumResult'+numResult, 'action'+newAction);
         break;
       case '-':
-        console.log("The result is: ", numResult)
          this.setState(() => ({
           action: newAction,
           value: '',
           result: numResult - numValue,
         }))
-        console.log('NumValue-'+numValue, 'NumResult'+numResult);
+        console.log('Minus NumValue-'+numValue, 'NumResult'+numResult);
         break;
       case '×':
         this.setState(() => ({
@@ -78,7 +76,7 @@ onAction(e){
           value: '',
           result: numResult * numValue,
         }))
-        console.log('NumValueX'+numValue, 'NumResult'+numResult);
+        console.log('umnojit NumValue'+numValue, 'NumResult'+numResult);
         break;
       case '÷':
         this.setState(() => ({
@@ -86,7 +84,7 @@ onAction(e){
           value: '',
           result: numResult / numValue,
         }))
-        console.log('NumValue:'+numValue, 'NumResult'+numResult);
+        console.log('Delit NumValue:'+numValue, 'NumResult'+numResult);
         break;
       case '±':
         this.setState(() => ({
@@ -94,10 +92,9 @@ onAction(e){
           value: '',
           result: numResult * -1
         }))
-        console.log('NumValue%'+numValue, 'NumResult'+numResult);
+        console.log('NumValue'+numValue, 'NumResult'+numResult);
         break;
       default:
-        break;
     }
     console.log('Result:'+this.state.value,'Value:'+this.state.action,this.state.result)
   }
@@ -163,7 +160,6 @@ switchAction(e){
       break;
     default:
       return this.state.value + newAction;
-      break;
   }
 }
   
@@ -181,15 +177,19 @@ onEquall(){
     }
   if(this.state.action === '+'){
     result = numResult + numValue
+    console.log('Plus NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '-'){
     result = numResult - numValue
+    console.log('Minus NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '×'){
     result = numResult * numValue
+    console.log('Umnogit NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '÷'){
     result = numResult / numValue
+    console.log('Delit NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '%'){
     result = numResult / 100
@@ -200,7 +200,7 @@ onEquall(){
   this.setState(() => ({
    value: result,
   }))
-  console.log('Result:'+this.state.resut, 'Value:'+ this.state.value)
+  console.log(' na Ravno Result:'+this.state.resut, 'Value:'+ this.state.value)
 }
 
 updateChange = (e) => {
@@ -214,8 +214,6 @@ updateChange = (e) => {
   console.log('skolko bykv'+this.state.value.length)
  this.switchAction(this.state.value[this.state.value.length -1])
 }
-
-
 
 
     render(){
