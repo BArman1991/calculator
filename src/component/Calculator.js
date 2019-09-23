@@ -14,6 +14,7 @@ class Calculator extends React.Component{
    
 printValue(value) {
   const newVal = this.state.value + value
+  console.log('Tolko chto zashel '+newVal)
   parseFloat(newVal); 
   this.setState(() => ({value: newVal }))
   
@@ -60,7 +61,7 @@ onAction(e){
           value: '',
           result: numResult + numValue,
         }))
-        console.log('Plus NumValue+'+numValue, 'NumResult'+numResult, 'action'+newAction);
+        console.log('Plus NumValue '+numValue, 'NumResult '+numResult, 'action'+newAction);
         break;
       case '-':
          this.setState(() => ({
@@ -68,7 +69,7 @@ onAction(e){
           value: '',
           result: numResult - numValue,
         }))
-        console.log('Minus NumValue-'+numValue, 'NumResult'+numResult);
+        console.log('Minus NumValue '+numValue, 'NumResult '+numResult);
         break;
       case '×':
         this.setState(() => ({
@@ -76,7 +77,7 @@ onAction(e){
           value: '',
           result: numResult * numValue,
         }))
-        console.log('umnojit NumValue'+numValue, 'NumResult'+numResult);
+        console.log('umnojit NumValue '+numValue, 'NumResult '+numResult);
         break;
       case '÷':
         this.setState(() => ({
@@ -84,7 +85,7 @@ onAction(e){
           value: '',
           result: numResult / numValue,
         }))
-        console.log('Delit NumValue:'+numValue, 'NumResult'+numResult);
+        console.log('Delit NumValue: '+numValue, 'NumResult '+numResult);
         break;
       case '±':
         this.setState(() => ({
@@ -92,11 +93,11 @@ onAction(e){
           value: '',
           result: numResult * -1
         }))
-        console.log('NumValue'+numValue, 'NumResult'+numResult);
+        console.log('NumValue '+numValue, 'NumResult '+numResult);
         break;
-      default:
+        default:
     }
-    console.log('Result:'+this.state.value,'Value:'+this.state.action,this.state.result)
+    console.log('Value: '+this.state.value,'Result: '+this.state.resut, 'Action: '+this.state.result)
   }
 }
 
@@ -176,23 +177,41 @@ onEquall(){
       numValue = parseFloat(this.state.value, 10);
     }
   if(this.state.action === '+'){
-    result = numResult + numValue
-    console.log('Plus NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
+    result = numValue + numResult
+    this.setState(()=> ({
+      result:''
+    }))
+    console.log('Plus NumValue+ '+numValue,''+this.state.value , 'NumResult '+numResult,+''+this.state.result, 'action'+this.state.action);
   }
   if(this.state.action === '-'){
-    result = numResult - numValue
-    console.log('Minus NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
+    result =  numResult - numValue
+    console.log('Minus Dvajdi NumValue '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
+    this.setState(()=> ({
+      result: '',
+      action: ''
+      
+    }))
+    console.log('Minus NumValue+ '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '×'){
     result = numResult * numValue
-    console.log('Umnogit NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
+    this.setState(()=>({
+      action:''
+    }))
+    console.log('Umnogit NumValue+ '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '÷'){
     result = numResult / numValue
-    console.log('Delit NumValue+'+numValue, 'NumResult'+numResult, 'action'+this.state.action);
+    this.setState(()=> ({
+      action:''
+    }))
+    console.log('Delit NumValue+ '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '%'){
     result = numResult / 100
+    this.setState(() => ({
+      action:'',
+    }))
   }
   if(this.state.action === '±'){
     result = numResult * -1
