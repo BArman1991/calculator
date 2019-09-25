@@ -21,9 +21,9 @@ const Display = (props) => {
       action={props.action} 
       result={props.result}
     >
-    
-    <DynamicFont smooth content={props.value} />
-    
+
+    <DynamicFont smooth content={props.value + ''} />
+
     </p>
     </div>
   );
