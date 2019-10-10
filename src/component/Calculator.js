@@ -83,7 +83,7 @@ onAction(e){
         break;
       default:
     }
-    var multiplier = newAction != "±" ? 1 : -1;
+    var multiplier = newAction !== "±" ? 1 : -1;
     this.setState(() => ({
       action: newAction,
       value:'',

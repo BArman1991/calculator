@@ -5,11 +5,6 @@ import DynamicFont from 'react-dynamic-font';
 
 
 
-
-
-
-
-
 const Display = (props) => {
   console.log('Display: ',props);
   
@@ -33,10 +28,3 @@ export default Display;
 
 
 
-
-// <input type="text" className={props.value.length>6?'vasia':'grisha'}
-// onChange={(e) => props.changeValue(e)}
-// value={props.value}  
-// action={props.action} 
-// result={props.result}
-//  />
