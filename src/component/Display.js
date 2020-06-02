@@ -2,9 +2,9 @@ import React from 'react';
 import './Display.css';
 
 
-
 const Display = (props) => {
   console.log('Display: ',props);
+  
   return(
     <div className="Display">
       <input type="text" className={props.value.length>6?'vasia':'grisha'}
