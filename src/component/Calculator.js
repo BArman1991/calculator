@@ -1,24 +1,31 @@
 import React from 'react';
 import Batton from './Batton';
-import Display from './Display';
+import Display from './Display';  
 import './Calculator.css';
-import { thisTypeAnnotation, switchCase, switchStatement } from '@babel/types';
-import { SSL_OP_CIPHER_SERVER_PREFERENCE } from 'constants';
+
 
 
 class Calculator extends React.Component{
   state = {
     value: '',
     result: '',
-    action: ''
+    action: '',
+    inPut:''
 }
    
 printValue(value) {
   const newVal = this.state.value + value
-  parseFloat(newVal); 
+  //parseFloat(newVal); 
+  // this.setState(() => ({value: newVal }))
   this.setState(() => ({value: newVal }))
   
 }
+
+
+getDisplayValue(){
+  return this.state.value?this.state.value:this.state.result
+}
+
 
 zeroValue = () => {
   this.setState(()=>({
@@ -35,14 +42,17 @@ onAction(e){
 
   var numResult = 0;
   var numValue = 0;
+  var numMemory = 0;
 
 
-  if(this.state.result !== ""){
+  // if(this.state.result !== ""){
+  if(this.state.result){
     numResult = parseFloat(this.state.result, 10);
   }
   
 
-  if(this.state.value !== ""){
+  // if(this.state.value !== ""){
+  if(this.state.value){
     numValue = parseFloat(this.state.value, 10);
   }
   
@@ -56,50 +66,30 @@ onAction(e){
   }else{
     switch (this.state.action) {
       case '+':
-        this.setState(() => ({
-          action: newAction,
-          value: '',
-          result: numResult + numValue,
-        }))
-        console.log('NumValue+'+numValue, 'NumResult'+numResult);
+        numMemory = numResult + numValue 
+        console.log('Plus NumValue '+numValue, 'NumResult '+numResult, 'action'+newAction,' Input '+this.state.inPut);
         break;
       case '-':
-        console.log("The result is: ", numResult)
-         this.setState(() => ({
-          action: newAction,
-          value: '',
-          result: numResult - numValue,
-        }))
-        console.log('NumValue-'+numValue, 'NumResult'+numResult);
+         numMemory = numResult - numValue;
+        console.log('Minus NumValue '+numValue, 'NumResult '+numResult);
         break;
       case '×':
-        this.setState(() => ({
-          action: newAction,
-          value: '',
-          result: numResult * numValue,
-        }))
-        console.log('NumValueX'+numValue, 'NumResult'+numResult);
+        numMemory = numResult * numValue;
+        console.log('umnojit NumValue '+numValue, 'NumResult '+numResult);
         break;
       case '÷':
-        this.setState(() => ({
-          action: newAction,
-          value: '',
-          result: numResult / numValue,
-        }))
-        console.log('NumValue:'+numValue, 'NumResult'+numResult);
-        break;
-      case '±':
-        this.setState(() => ({
-          action: newAction,
-          value: '',
-          result: numResult * -1
-        }))
-        console.log('NumValue%'+numValue, 'NumResult'+numResult);
+        numMemory = numResult / numValue;
+        console.log('Delit NumValue: '+numValue, 'NumResult '+numResult);
         break;
       default:
-        break;
     }
-    console.log('Result:'+this.state.value,'Value:'+this.state.action,this.state.result)
+    var multiplier = newAction !== "±" ? 1 : -1;
+    this.setState(() => ({
+      action: newAction,
+      value:'',
+      result: numMemory * multiplier
+    }))
+    console.log('Value: '+this.state.value,'Result: '+this.state.result, ' Input: '+this.state.inPut,' Action: '+this.state.action)
   }
 }
 
@@ -163,7 +153,6 @@ switchAction(e){
       break;
     default:
       return this.state.value + newAction;
-      break;
   }
 }
   
@@ -180,19 +169,42 @@ onEquall(){
       numValue = parseFloat(this.state.value, 10);
     }
   if(this.state.action === '+'){
-    result = numResult + numValue
+    result = numValue + numResult
+    this.setState(()=> ({
+      result:'',
+      inPut: result
+    }))
+    console.log('Plus NumValue+ '+numValue,''+this.state.value , 'NumResult '+numResult,+''+this.state.result, 'action'+this.state.action);
   }
   if(this.state.action === '-'){
-    result = numResult - numValue
+    result =  numResult - numValue
+    console.log('Minus Dvajdi NumValue '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
+    this.setState(()=> ({
+      result: '',
+      action: ''
+      
+    }))
+    console.log('Minus NumValue+ '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '×'){
     result = numResult * numValue
+    this.setState(()=>({
+      action:''
+    }))
+    console.log('Umnogit NumValue+ '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '÷'){
     result = numResult / numValue
+    this.setState(()=> ({
+      action:''
+    }))
+    console.log('Delit NumValue+ '+numValue, 'NumResult '+numResult, 'action'+this.state.action);
   }
   if(this.state.action === '%'){
     result = numResult / 100
+    this.setState(() => ({
+      action:'',
+    }))
   }
   if(this.state.action === '±'){
     result = numResult * -1
@@ -200,7 +212,7 @@ onEquall(){
   this.setState(() => ({
    value: result,
   }))
-  console.log('Result:'+this.state.resut, 'Value:'+ this.state.value)
+  console.log(' na Ravno Result:'+this.state.resut, 'Value:'+ this.state.value)
 }
 
 updateChange = (e) => {
@@ -216,20 +228,24 @@ updateChange = (e) => {
 }
 
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 0b177264bfa8d08f743d04083c34573d7162b31a
     render(){
         return(
             <div className="Calculator">
             <Display 
             changeValue={(e) => this.updateChange(e)}
-            value={this.state.value} 
+            value={this.getDisplayValue()} 
             action={this.state.action} 
-            result={this.state.result}/>
-            <Batton className='topButton' value={this.state.value.length>0?'C':'AC'} changeValue={() => this.zeroValue()}/>
+            result={this.state.result}
+            />
+            <Batton className='topButton' value={this.state.value > 0 || this.state.result > 0?'C':'AC'} changeValue={() => this.zeroValue()}/>
             <Batton className='topButton' value='±' changeValue={() => this.onAction('±')}/>
             <Batton className='topButton' value='%' changeValue={() => this.onAction('%')}/>
             <Batton className='rightButton' value='÷' changeValue={() => this.onAction('÷')}/>
@@ -246,7 +262,7 @@ updateChange = (e) => {
             <Batton value="3" changeValue={() => this.printValue('3')}/>
             <Batton className='rightButton' value='+' changeValue={() => this.onAction('+')}/>
             <Batton value="0" className='zero' changeValue={() => this.printValue('0')}/>
-            <Batton value='.' changeValue={() => this.printValue('.')}/>
+            <Batton value='.' changeValue={() => this.printValue(this.state.value.indexOf('.')>=0?'':'.')}/>
             <Batton className='rightButton' value='=' changeValue={() => this.onEquall()}/>
             </div>
         );

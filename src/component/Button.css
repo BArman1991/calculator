@@ -1,3 +1,4 @@
+
 .Button{
     width: 79px;
     height:79px;
@@ -11,7 +12,7 @@
     position:relative;top:58px;
     border: none;
     font-size: 1.7em;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: inherit;
     
    
 

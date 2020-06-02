@@ -1,28 +1,27 @@
 .Display{
-    height: 61px;
+    height:61px;
+
     
     
 }
 
 .grisha{
     width:319px;
-    height:117px;
-    font-size:40px;
+    height:119px;
     font: 100 14px 'Roboto';
     font-size: 6em;
-    position: absolute;
     border: 0px;
     background: black; 
     color: white;
     text-align: right;
+    
+
 }
  
 
 .vasia{
     width:319px;
     height:117px;
-    font-size:40px;
-    font: 100 14px 'Roboto';
     font-size: 4em;
     position: absolute;
     border: 0px;
@@ -32,6 +31,7 @@
 }
 
 
+<<<<<<< HEAD
 .box {
     font-size: 16px;
   }
@@ -40,3 +40,5 @@
   .box.text-length-6 {
     font-size: 12px;
   }
+=======
+>>>>>>> 0b177264bfa8d08f743d04083c34573d7162b31a
