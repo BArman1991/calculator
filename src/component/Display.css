@@ -1,7 +1,5 @@
 .Display{
-    height:61px;
-
-    
+    height:61px; 
     
 }
 
@@ -29,8 +27,6 @@
     color: white;
     text-align: right;
 }
-
-
 
 .box {
     font-size: 16px;
