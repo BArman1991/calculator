@@ -228,14 +228,6 @@ updateChange = (e) => {
 }
 
 
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> 0b177264bfa8d08f743d04083c34573d7162b31a
     render(){
         return(
             <div className="Calculator">

@@ -6,11 +6,7 @@ import DynamicFont from 'react-dynamic-font';
 
 const Display = (props) => {
   console.log('Display: ',props);
-  
-<<<<<<< HEAD
-=======
-
->>>>>>> 0b177264bfa8d08f743d04083c34573d7162b31a
+   
   return(
     <div className="Display">
     <p className='grisha'
