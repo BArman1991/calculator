@@ -1,0 +1,17 @@
+### For installing my Calculator app on ec2 instance AWS ###
+Lunch ec2 instance.
+Follow for commands:
+Log-in to the ec2.
+yum update -y => updates your instance.
+sudo yum install docker => installation of docker on the instance.
+sudo service docker status => checks status of docker service. 
+sudo service docker start => starts docker service.
+sudo usermod -aG docker $USER => for use docker commands without sudo
+newgrp docker => for use docker commands without sudo
+sudo yum install git => installation of git
+git clone https://github.com/BArman1991/calculator => cloning of project to instance.
+cd calculator/
+docker build -t calculator . => creating of docker image.
+docker images => cheeks if the images exists.
+docker run -p 8080:80 calculator => running the container.
+docker run -d -p 8080:80 calculator => running the container.
